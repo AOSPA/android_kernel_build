@@ -1,10 +1,6 @@
 # Android Kernel compilation/common definitions
-ifeq ($(TARGET_BUILD_VARIANT),user)
-     KERNEL_DEFCONFIG := vendor/$(TARGET_BOARD_PLATFORM)-perf_defconfig
-endif
-
 ifeq ($(KERNEL_DEFCONFIG),)
-     KERNEL_DEFCONFIG := vendor/$(TARGET_PRODUCT)_defconfig
+     KERNEL_DEFCONFIG := vendor/$(TARGET_BOARD_PLATFORM)-perf_defconfig
 endif
 
 TARGET_KERNEL := msm-$(TARGET_KERNEL_VERSION)
