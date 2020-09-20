@@ -75,10 +75,10 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
     else
        KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)/clang
     endif
-    $(warning "Using sdllvm" $(KERNEL_LLVM_BIN))
+    $(info "Using sdllvm" $(KERNEL_LLVM_BIN))
   else
     KERNEL_LLVM_BIN := $(shell pwd)/$(CLANG) #Using aosp-llvm compiler
-    $(warning "Using aosp-llvm" $(KERNEL_LLVM_BIN))
+    $(info "Using aosp-llvm" $(KERNEL_LLVM_BIN))
   endif
   ifeq ($(KERNEL_ARCH), arm64)
       real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
