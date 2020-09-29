@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ifeq ($(BOARD_KERNEL_IMAGE_NAME),Image.gz-dtb)
+TARGET_KERNEL_APPEND_DTB := true
+endif
+
 ifneq ($(TARGET_KERNEL_CONFIG),)
     KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
 endif
