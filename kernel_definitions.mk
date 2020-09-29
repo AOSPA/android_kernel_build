@@ -42,6 +42,10 @@ ifeq ($(KERNEL_TARGET),)
 INSTALLED_KERNEL_TARGET := $(PRODUCT_OUT)/kernel
 endif
 
+ifeq ($(BOARD_KERNEL_IMAGE_NAME),Image.gz-dtb)
+TARGET_KERNEL_APPEND_DTB := true
+endif
+
 ifneq ($(TARGET_KERNEL_APPEND_DTB), true)
 $(info Using DTB Image)
 INSTALLED_DTBIMAGE_TARGET := $(PRODUCT_OUT)/dtb.img
