@@ -1,3 +1,5 @@
+include device/qcom/kernelscripts/legacy_definitions.mk
+
 # Android Kernel compilation/common definitions
 ifeq ($(KERNEL_DEFCONFIG),)
      KERNEL_DEFCONFIG := vendor/$(TARGET_BOARD_PLATFORM)-perf_defconfig
