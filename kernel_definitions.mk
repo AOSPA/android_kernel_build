@@ -98,6 +98,7 @@ else
 CLANG_ARCH := arm-linux-gnueabi
 endif
 
+cc :=
 real_cc :=
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
   ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
@@ -107,6 +108,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)/clang
     endif
     $(warning "Using sdllvm" $(KERNEL_LLVM_BIN))
+  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
   real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
   else
     ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
@@ -117,7 +119,8 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        KERNEL_AOSP_LLVM_BIN := $(shell pwd)/$(shell (dirname $(CLANG)))
        $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN))
     endif
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=$(CLANG_ARCH) AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
+  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
+  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
   endif
 else
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
@@ -284,6 +287,7 @@ define build-kernel
 	DTS_VENDOR=$(TARGET_DTS_VENDOR) \
 	MODULES=$(TARGET_HAS_MODULES) \
 	device/qcom/kernelscripts/buildkernel.sh \
+	$(cc) \
 	$(real_cc) \
 	$(TARGET_KERNEL_MAKE_ENV)
 endef
