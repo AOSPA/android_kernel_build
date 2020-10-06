@@ -80,6 +80,7 @@ ifeq ($(TARGET_PREBUILT_KERNEL),)
 
 KERNEL_GCC_NOANDROID_CHK := $(shell (echo "int main() {return 0;}" | $(KERNEL_CROSS_COMPILE)gcc -E -mno-android - > /dev/null 2>&1 ; echo $$?))
 
+cc :=
 real_cc :=
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
   ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
@@ -95,8 +96,10 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
   endif
   ifeq ($(KERNEL_ARCH), arm64)
       real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
+      cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
   else
       real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=arm-linux-gnueabihf
+      cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=arm-linux-gnueabihf
   endif
 else
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
@@ -172,6 +175,7 @@ $(KERNEL_HEADERS_INSTALL): $(KERNEL_OUT) $(DTC) #$(UFDT_APPLY_OVERLAY)
 	TARGET_LINCLUDES=$(TARGET_KERNEL_MAKE_LDFLAGS) \
 	device/qcom/kernelscripts/buildkernel.sh \
 	$(real_cc) \
+	$(cc) \
 	$(TARGET_KERNEL_MAKE_ENV)
 
 $(KERNEL_OUT):
@@ -196,6 +200,7 @@ $(TARGET_PREBUILT_KERNEL): $(KERNEL_OUT) $(DTC) $(KERNEL_USR)
 	TARGET_LINCLUDES=$(TARGET_KERNEL_MAKE_LDFLAGS) \
 	device/qcom/kernelscripts/buildkernel.sh \
 	$(real_cc) \
+	$(cc) \
 	$(TARGET_KERNEL_MAKE_ENV)
 
 $(INSTALLED_KERNEL_TARGET): $(TARGET_PREBUILT_KERNEL) | $(ACP)
