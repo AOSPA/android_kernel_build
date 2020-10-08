@@ -309,7 +309,7 @@ else
 	KERNEL_BINS=${PRIMARY_KERN_BINS}
 fi
 
-debugfs_disable
+#debugfs_disable
 #use prebuilts if we want to use them, and they are available
 if [ ! -z ${USE_PREBUILT_KERNEL} ] && [ -d ${KERNEL_BINS} ]; then
 	make_defconfig
