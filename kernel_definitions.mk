@@ -314,4 +314,4 @@ $(RTIC_DTB): $(INSTALLED_KERNEL_TARGET)
 
 # Creating a dtb.img once the kernel is compiled if TARGET_KERNEL_APPEND_DTB is set to be false
 $(INSTALLED_DTBIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET) $(RTIC_DTB)
-	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/vendor/qcom/*.dtb $(RTIC_DTB) > $@
+	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/**/*.dtb $(RTIC_DTB) > $@
