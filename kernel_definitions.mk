@@ -266,6 +266,7 @@ define build-kernel
 	VENDOR_RAMDISK_KERNEL_MODULES_ARCHIVE=$(VENDOR_RAMDISK_KERNEL_MODULES_ARCHIVE) \
 	VENDOR_RAMDISK_KERNEL_MODULES="$(VENDOR_RAMDISK_KERNEL_MODULES)" \
 	TARGET_PRODUCT=$(TARGET_BOARD_PLATFORM) \
+	DTS_VENDOR=$(TARGET_DTS_VENDOR) \
 	device/qcom/kernelscripts/buildkernel.sh \
 	$(real_cc) \
 	$(TARGET_KERNEL_MAKE_ENV)
@@ -317,7 +318,7 @@ $(RTIC_DTB): $(INSTALLED_KERNEL_TARGET)
 # Creating a dtb.img once the kernel is compiled if TARGET_KERNEL_APPEND_DTB is set to be false
 $(INSTALLED_DTBIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET) $(RTIC_DTB)
 ifneq (,$(wildcard $(TARGET_KERNEL_SOURCE)/arch/arm64/boot/dts/vendor))
-	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/vendor/qcom/*.dtb $(RTIC_DTB) > $@
+	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/vendor/$(TARGET_DTS_VENDOR)/*.dtb $(RTIC_DTB) > $@
 else
-	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/qcom/*.dtb $(RTIC_DTB) > $@
+	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/$(TARGET_DTS_VENDOR)/*.dtb $(RTIC_DTB) > $@
 endif

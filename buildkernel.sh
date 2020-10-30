@@ -224,13 +224,13 @@ copy_all_to_prebuilt()
 	#copy dtbo images to prebuilt
 	echo "============="
 	echo "Copying target dtb/dtbo files to prebuilt"
-	if [ ! -e ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/qcom ]; then
-		mkdir -p ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/qcom
+	if [ ! -e ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR} ]; then
+		mkdir -p ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}
 	fi
-	cp -p -r ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/qcom/*.dtb ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/qcom/
+	cp -p -r ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtb ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/
 
-	if [ -f ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/qcom/*.dtbo ]; then
-		cp -p -r ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/qcom/*.dtbo ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/qcom/
+	if [ -f ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtbo ]; then
+		cp -p -r ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtbo ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/
 	fi
 
 	#copy arch generated headers
@@ -297,11 +297,11 @@ copy_from_prebuilt()
 	#copy dtbo images from prebuilt
 	echo "============="
 	echo "Copying dtb/dtbo files from prebuilt"
-	if [ ! -e ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/qcom ]; then
-		mkdir -p ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/qcom
+	if [ ! -e ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR} ]; then
+		mkdir -p ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}
 	fi
-	cp -p -r ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/qcom/*.dtb ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/qcom/
-	cp -p -r ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/qcom/*.dtbo ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/qcom/
+	cp -p -r ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtb ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/
+	cp -p -r ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtbo ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/
 
 	#copy arch generated headers, and kernel generated headers
 	echo "============"
