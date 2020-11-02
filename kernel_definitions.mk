@@ -63,7 +63,9 @@ KERNEL_ARCH := $(TARGET_KERNEL_ARCH)
 endif
 
 ifeq ($(shell echo $(KERNEL_DEFCONFIG) | grep vendor),)
+ifneq (,$(wildcard $(TARGET_KERNEL_SOURCE)/arch/$(TARGET_ARCH)/configs/vendor/$(KERNEL_DEFCONFIG)))
 KERNEL_DEFCONFIG := vendor/$(KERNEL_DEFCONFIG)
+endif
 endif
 
 # Force 32-bit binder IPC for 64bit kernel with 32bit userspace
