@@ -197,7 +197,9 @@ copy_all_to_prebuilt()
 		mkdir -p ${PREBUILT_OUT}
 	fi
 
-	copy_modules_to_prebuilt ${PREBUILT_OUT}
+        if [ ! -z "$MODULES" ]; then
+		copy_modules_to_prebuilt ${PREBUILT_OUT}
+	fi
 
 	#copy necessary files from the out directory
 	echo "============="
@@ -397,10 +399,14 @@ else
 	make_defconfig
 	headers_install
 	build_kernel
-	modules_install
+	if [ ! -z "$MODULES" ]; then
+		modules_install
+	fi
 	copy_all_to_prebuilt ${KERNEL_BINS}
-	archive_kernel_modules
-	save_unstripped_modules
+        if [ ! -z "$MODULES" ]; then
+		archive_kernel_modules
+		save_unstripped_modules
+	fi
 fi
 
 exit 0
