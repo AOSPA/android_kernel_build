@@ -8,6 +8,7 @@ endif
 ifeq ($(TARGET_KERNEL_SOURCE),)
      TARGET_KERNEL_SOURCE := kernel/msm-$(TARGET_KERNEL_VERSION)
 endif
+KERNEL_TO_BUILD_ROOT_OFFSET := $(shell python -c "import os.path; print(os.path.relpath('$(TOP)', '$(TARGET_KERNEL_SOURCE)'))")/
 
 DTC := $(HOST_OUT_EXECUTABLES)/dtc$(HOST_EXECUTABLE_SUFFIX)
 #UFDT_APPLY_OVERLAY := $(HOST_OUT_EXECUTABLES)/ufdt_apply_overlay$(HOST_EXECUTABLE_SUFFIX)
