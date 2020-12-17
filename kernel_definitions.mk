@@ -15,6 +15,7 @@ endif
 ifeq ($(TARGET_KERNEL_SOURCE),)
      TARGET_KERNEL_SOURCE := kernel/msm-$(TARGET_KERNEL_VERSION)
 endif
+KERNEL_TO_BUILD_ROOT_OFFSET := $(shell python -c "import os.path; print(os.path.relpath('$(TOP)', '$(TARGET_KERNEL_SOURCE)'))")/
 TARGET_KERNEL := $(subst kernel/,,$(TARGET_KERNEL_SOURCE))
 
 SOURCE_ROOT := $(shell pwd)
