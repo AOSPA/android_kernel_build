@@ -10,10 +10,10 @@ else
 endif
 endif
 
-TARGET_KERNEL := msm-$(TARGET_KERNEL_VERSION)
 ifeq ($(TARGET_KERNEL_SOURCE),)
-     TARGET_KERNEL_SOURCE := kernel/$(TARGET_KERNEL)
+     TARGET_KERNEL_SOURCE := kernel/msm-$(TARGET_KERNEL_VERSION)
 endif
+TARGET_KERNEL := $(subst kernel/,,$(TARGET_KERNEL_SOURCE))
 
 SOURCE_ROOT := $(shell pwd)
 MAKE_PATH := $(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/
