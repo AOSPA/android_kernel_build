@@ -26,8 +26,8 @@ ifeq ($(BOARD_KERNEL_SEPARATED_DTBO), true)
 TARGET_KERNEL_MAKE_ENV += CONFIG_BUILD_ARM64_DT_OVERLAY=y
 endif
 TARGET_KERNEL_MAKE_ENV += HOSTCC=$(SOURCE_ROOT)/$(SOONG_LLVM_PREBUILTS_PATH)/clang
-TARGET_KERNEL_MAKE_ENV += HOSTAR=$(SOURCE_ROOT)/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar
-TARGET_KERNEL_MAKE_ENV += HOSTLD=$(SOURCE_ROOT)/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld
+TARGET_KERNEL_MAKE_ENV += AR=$(SOURCE_ROOT)/vendor/qcom/sdclang/bin/llvm-ar
+TARGET_KERNEL_MAKE_ENV += LD=$(SOURCE_ROOT)/vendor/qcom/sdclang/bin/ld.lld
 TARGET_KERNEL_MAKE_ENV += BISON_PKGDATADIR=$(SOURCE_ROOT)/prebuilts/build-tools/common/bison
 TARGET_KERNEL_MAKE_ENV += YACC=$(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/bison
 TARGET_KERNEL_MAKE_ENV += LEX=$(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/flex
