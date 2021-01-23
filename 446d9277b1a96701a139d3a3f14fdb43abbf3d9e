@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96f5b79_ce5de388",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000447
+      },
+      "writtenOn": "2021-01-23T21:24:14Z",
+      "side": 1,
+      "message": "On 4.19 you\u0027ll need https://github.com/AOSPA/android_kernel_oneplus_sm8250/commit/b1e7d78599e7aca3147896fd292a4fd0a21c3559 ",
+      "revId": "446d9277b1a96701a139d3a3f14fdb43abbf3d9e",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
