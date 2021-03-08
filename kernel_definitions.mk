@@ -102,9 +102,21 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
       cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=arm-linux-gnueabihf
   endif
 else
-ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
-KERNEL_CFLAGS := KCFLAGS=-mno-android
-endif
+  ifneq ($(KERNEL_GCC_TOOLCHAIN), $(empty))
+    ifeq ($(KERNEL_LLVM_SUPPORT), true)
+      $(error "Both GCC and Clang are set to be used, remove either of them to continue") # this ain't ever happening chief
+    else
+      ifneq ($(KERNEL_GCC_TOOLCHAIN), $(empty))
+        ifeq ($(KERNEL_LLVM_SUPPORT), false)
+          KERNEL_GCC_BIN := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/$(KERNEL_GCC_TOOLCHAIN)/bin
+          $(info "Using GCC: $(KERNEL_GCC_TOOLCHAIN)" $(KERNEL_GCC_BIN))
+        endif
+      endif
+    endif
+  endif
+  ifeq ($(KERNEL_ARCH), arm64)
+      cc := CC=$(KERNEL_GCC_BIN)/$(KERNEL_GCC_TOOLCHAIN)-gcc
+  endif
 endif
 
 BUILD_ROOT_LOC := ../../..
