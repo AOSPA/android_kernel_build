@@ -15,6 +15,7 @@ ifeq ($(TARGET_KERNEL_SOURCE),)
      TARGET_KERNEL_SOURCE := kernel/$(TARGET_KERNEL)
 endif
 
+DEPMOD := $(HOST_OUT_EXECUTABLES)/depmod$(HOST_EXECUTABLE_SUFFIX)
 DTC := $(HOST_OUT_EXECUTABLES)/dtc$(HOST_EXECUTABLE_SUFFIX)
 #UFDT_APPLY_OVERLAY := $(HOST_OUT_EXECUTABLES)/ufdt_apply_overlay$(HOST_EXECUTABLE_SUFFIX)
 
@@ -33,6 +34,7 @@ TARGET_KERNEL_MAKE_ENV += HOSTAR=$(SOURCE_ROOT)/prebuilts/gcc/linux-x86/host/x86
 TARGET_KERNEL_MAKE_ENV += HOSTLD=$(SOURCE_ROOT)/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld
 TARGET_KERNEL_MAKE_CFLAGS = "-I/usr/include -I/usr/include/x86_64-linux-gnu -L/usr/lib -L/usr/lib/x86_64-linux-gnu -fuse-ld=lld"
 TARGET_KERNEL_MAKE_ENV += BISON_PKGDATADIR=$(SOURCE_ROOT)/prebuilts/build-tools/common/bison
+TARGET_KERNEL_MAKE_ENV += DEPMOD=$(SOURCE_ROOT)/$(HOST_OUT_EXECUTABLES)/depmod
 TARGET_KERNEL_MAKE_ENV += YACC=$(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/bison
 TARGET_KERNEL_MAKE_ENV += LEX=$(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/flex
 TARGET_KERNEL_MAKE_ENV += M4=$(SOURCE_ROOT)/prebuilts/build-tools/$(HOST_OS)-x86/bin/m4
@@ -277,7 +279,7 @@ endef
 # this will ensure in subsequent builds, i.e. no-op incremental builds, modules depends on $(KERNEL_USR) \
 # will not get recompiled.
 
-$(KERNEL_HEADERS_INSTALL): $(DTC) | $(KERNEL_OUT)
+$(KERNEL_HEADERS_INSTALL): $(DTC) $(DEPMOD) | $(KERNEL_OUT)
 	$(call build-kernel,$(KERNEL_DEFCONFIG),$(KERNEL_OUT),$(KERNEL_MODULES_OUT),$(KERNEL_HEADERS_INSTALL),1,$(TARGET_PREBUILT_INT_KERNEL))
 	touch $(KERNEL_USR_TS)
 
