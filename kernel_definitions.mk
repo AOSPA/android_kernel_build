@@ -15,11 +15,15 @@ ifeq ($(TARGET_KERNEL_SOURCE),)
      TARGET_KERNEL_SOURCE := kernel/$(TARGET_KERNEL)
 endif
 
+SOURCE_ROOT := $(shell pwd)
+MAKE_PATH := $(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/
 DEPMOD := $(HOST_OUT_EXECUTABLES)/depmod$(HOST_EXECUTABLE_SUFFIX)
 DTC := $(HOST_OUT_EXECUTABLES)/dtc$(HOST_EXECUTABLE_SUFFIX)
 #UFDT_APPLY_OVERLAY := $(HOST_OUT_EXECUTABLES)/ufdt_apply_overlay$(HOST_EXECUTABLE_SUFFIX)
 
-SOURCE_ROOT := $(shell pwd)
+ifneq (,$(wildcard $(OUT_DIR)/.path_interposer_origpath))
+PATH_OVERRIDE := PATH=$(shell cat $(OUT_DIR)/.path_interposer_origpath):$$PATH
+endif
 
 ifneq ($(strip $(OUT_DIR)), out)
 TARGET_KERNEL_MAKE_ENV := DTC_EXT=$(DTC)
@@ -141,7 +145,8 @@ GKI_PLATFORM_NAME := $(shell echo $(GKI_PLATFORM_NAME) | sed "s/vendor\///g")
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/vendor/$(GKI_PLATFORM_NAME)_GKI.config)
 
 # Generate the defconfig file from the fragments
-_x := $(shell ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=${TARGET_BUILD_VARIANT} $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG))
+cmd := $(PATH_OVERRIDE) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=${TARGET_BUILD_VARIANT} $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG)
+_x := $(shell $(cmd))
 else
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/$(KERNEL_DEFCONFIG))
 endif
@@ -165,7 +170,6 @@ endif
 KERNEL_HEADERS_INSTALL := $(KERNEL_OUT)/usr
 KERNEL_MODULES_INSTALL ?= system
 KERNEL_MODULES_OUT ?= $(PRODUCT_OUT)/$(KERNEL_MODULES_INSTALL)/lib/modules
-
 TARGET_PREBUILT_KERNEL := $(TARGET_PREBUILT_INT_KERNEL)
 
 endif
@@ -239,8 +243,6 @@ $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES): $(TARGET_PREBUILT_KERNEL)
 ifdef RTIC_MPGEN
 RTIC_DTB := $(KERNEL_SYMLINK)/rtic_mp.dtb
 endif
-
-MAKE_PATH := $(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/
 
 # Helper functions
 
