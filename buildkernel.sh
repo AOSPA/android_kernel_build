@@ -32,7 +32,7 @@ export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
 export KERNEL_PREBUILT_DIR=$(readlink -m ${KERNEL_DIR}/../ship_prebuilt)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
 export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
-export UNSTRIPPED_DIR=${ROOT_DIR}/${KERNEL_MODULES_OUT}/unstripped
+export UNSTRIPPED_DIR=${KERNEL_MODULES_OUT}/unstripped
 export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_ARM32 ARCH SUBARCH
 
 #Setting up for build
