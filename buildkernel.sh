@@ -232,7 +232,9 @@ copy_all_to_prebuilt()
 		fi
 		cp -p -r ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtb ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/
 
-		if [ -f ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtbo ]; then
+		dir=${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/
+		count=`ls -1 $dir/*.dtbo 2>/dev/null | wc -l`
+		if [ $count != 0 ]; then
 			cp -p -r ${OUT_DIR}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/*.dtbo ${PREBUILT_OUT}/${IMAGE_FILE_PATH}/dts/vendor/${DTS_VENDOR}/
 		fi
 	fi
