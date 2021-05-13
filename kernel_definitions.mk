@@ -29,6 +29,7 @@ endif
 TARGET_KERNEL_MAKE_ENV += HOSTCC=$(SOURCE_ROOT)/$(SOONG_LLVM_PREBUILTS_PATH)/clang
 TARGET_KERNEL_MAKE_ENV += AR=$(SOURCE_ROOT)/vendor/qcom/sdclang/bin/llvm-ar
 TARGET_KERNEL_MAKE_ENV += LD=$(SOURCE_ROOT)/vendor/qcom/sdclang/bin/ld.lld
+TARGET_KERNEL_MAKE_ENV += NM=$(SOURCE_ROOT)/vendor/qcom/sdclang/bin/llvm-nm
 TARGET_KERNEL_MAKE_ENV += BISON_PKGDATADIR=$(SOURCE_ROOT)/prebuilts/build-tools/common/bison
 TARGET_KERNEL_MAKE_ENV += DEPMOD=$(SOURCE_ROOT)/$(HOST_OUT_EXECUTABLES)/depmod
 TARGET_KERNEL_MAKE_ENV += YACC=$(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/bison
