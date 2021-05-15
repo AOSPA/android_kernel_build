@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aec33b2_b7a8c171",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2021-05-15T16:11:08Z",
+      "side": 1,
+      "message": "why are these commits separate?\n\nalso, I don\u0027t think it makes sense to hardcode to SDLLVM. shouldn\u0027t we use a variable that picks AOSP if AOSP compiler and SDLLVM if SDLLVM is used?",
+      "revId": "f9b28338c34d92ae86b776d5b4deaa59a326f678",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
