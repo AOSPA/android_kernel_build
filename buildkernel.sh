@@ -157,7 +157,7 @@ copy_modules_to_prebuilt()
 	mkdir -p ${KERNEL_MODULES_OUT}
 
 	MODULES=$(find ${MODULES_STAGING_DIR} -type f -name "*.ko")
-	if [ -n "${MODULES}" ]; then
+	if ${HAS_MODULES}; then
 		echo "======================"
 		echo " Copying modules files"
 		for FILE in ${MODULES}; do
@@ -197,7 +197,7 @@ copy_all_to_prebuilt()
 		mkdir -p ${PREBUILT_OUT}
 	fi
 
-        if [ ! -z "$MODULES" ]; then
+        if ${HAS_MODULES}; then
 		copy_modules_to_prebuilt ${PREBUILT_OUT}
 	fi
 
@@ -405,11 +405,11 @@ else
 	make_defconfig
 	headers_install
 	build_kernel
-	if [ ! -z "$MODULES" ]; then
+	if ${HAS_MODULES}; then
 		modules_install
 	fi
 	copy_all_to_prebuilt ${KERNEL_BINS}
-        if [ ! -z "$MODULES" ]; then
+        if ${HAS_MODULES}; then
 		archive_kernel_modules
 		save_unstripped_modules
 	fi
