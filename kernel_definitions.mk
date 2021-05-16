@@ -159,6 +159,11 @@ _x := $(shell $(cmd))
 else
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/$(KERNEL_ARCH)/configs/$(KERNEL_DEFCONFIG))
 TARGET_HAS_MODULES := $(shell grep "=m" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/$(KERNEL_DEFCONFIG))
+ifneq ($(TARGET_HAS_MODULES),)
+MODULES := true
+else
+MODULES := false
+endif
 endif
 
 # Generate the defconfig file from the fragments
@@ -285,7 +290,7 @@ define build-kernel
 	VENDOR_RAMDISK_KERNEL_MODULES="$(VENDOR_RAMDISK_KERNEL_MODULES)" \
 	TARGET_PRODUCT=$(TARGET_BOARD_PLATFORM) \
 	DTS_VENDOR=$(TARGET_DTS_VENDOR) \
-	MODULES=$(TARGET_HAS_MODULES) \
+	HAS_MODULES=$(MODULES) \
 	device/qcom/kernelscripts/buildkernel.sh \
 	$(cc) \
 	$(real_cc) \
