@@ -304,7 +304,7 @@ $(GKI_KERNEL_OUT):
 	mkdir -p $(GKI_KERNEL_OUT)
 
 $(KERNEL_USR): | $(KERNEL_HEADERS_INSTALL)
-	if [ -d "$(KERNEL_SYMLINK)" ] && [ ! -L "$(KERNEL_SYMLINK)" ]; then \
+	if [ -d "$(KERNEL_SYMLINK)" ] && [ ! -L "$(KERNEL_SYMLINK)" ] || [ "$$(readlink $(KERNEL_SYMLINK))" != "kernel/$(TARGET_KERNEL)" ]; then \
 	rm -rf $(KERNEL_SYMLINK); \
 	ln -s kernel/$(TARGET_KERNEL) $(KERNEL_SYMLINK); \
 	fi
