@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01254367_93e0afbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2021-05-28T03:01:10Z",
+      "side": 1,
+      "message": "shouldn\u0027t be unconditionally sdclang",
+      "revId": "f6cf07b6558226d6bf94734ce0020e870f632c7f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
