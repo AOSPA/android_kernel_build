@@ -102,8 +102,8 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)/clang
     endif
     $(warning "Using sdllvm" $(KERNEL_LLVM_BIN))
-  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
+  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(SDCLANG_PATH)/llvm-ar LLVM_NM=$(SDCLANG_PATH)/llvm-nm LD=$(SDCLANG_PATH)/ld.lld NM=$(SDCLANG_PATH)/llvm-nm
+  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(SDCLANG_PATH)/llvm-ar LLVM_NM=$(SDCLANG_PATH)/llvm-nm LD=$(SDCLANG_PATH)/ld.lld NM=$(SDCLANG_PATH)/llvm-nm
   else
     ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
        KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_CLANG)
