@@ -107,13 +107,13 @@ real_cc :=
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
   ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
     ifeq ($(shell echo $(SDCLANG_PATH) | head -c 1),/)
-       KERNEL_LLVM_BIN := $(SDCLANG_PATH)/clang
+       KERNEL_LLVM_BIN := $(SDCLANG_PATH)
     else
-       KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)/clang
+       KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)
     endif
-    $(warning "Using sdllvm" $(KERNEL_LLVM_BIN))
-  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
+    $(warning "Using sdllvm" $(KERNEL_LLVM_BIN)/clang)
+  cc := CC=$(KERNEL_LLVM_BIN)/clang CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_LLVM_BIN)/llvm-nm LD=$(KERNEL_LLVM_BIN)/ld.lld NM=$(KERNEL_LLVM_BIN)/llvm-nm OBJCOPY=$(KERNEL_LLVM_BIN)/llvm-objcopy
+  real_cc := REAL_CC=$(KERNEL_LLVM_BIN)/clang CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_LLVM_BIN)/llvm-nm LD=$(KERNEL_LLVM_BIN)/ld.lld NM=$(KERNEL_LLVM_BIN)/llvm-nm
   else
     ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
        KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_CLANG)
