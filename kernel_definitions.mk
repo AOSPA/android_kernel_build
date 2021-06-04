@@ -95,7 +95,6 @@ ifeq ($(TARGET_PREBUILT_KERNEL),)
 KERNEL_GCC_NOANDROID_CHK := $(shell (echo "int main() {return 0;}" | $(KERNEL_CROSS_COMPILE)gcc -E -mno-android - > /dev/null 2>&1 ; echo $$?))
 
 cc :=
-real_cc :=
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
   ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
     ifeq ($(shell echo $(SDCLANG_PATH) | head -c 1),/)
@@ -104,8 +103,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)
     endif
     $(warning "Using sdllvm" $(KERNEL_LLVM_BIN)/clang)
-  cc := CC=$(KERNEL_LLVM_BIN)/clang CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_LLVM_BIN)/llvm-nm LD=$(KERNEL_LLVM_BIN)/ld.lld NM=$(KERNEL_LLVM_BIN)/llvm-nm OBJCOPY=$(KERNEL_LLVM_BIN)/llvm-objcopy
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN)/clang CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_LLVM_BIN)/llvm-nm LD=$(KERNEL_LLVM_BIN)/ld.lld NM=$(KERNEL_LLVM_BIN)/llvm-nm
+  cc := CC=$(KERNEL_LLVM_BIN)/clang REAL_CC=$(KERNEL_LLVM_BIN)/clang CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_LLVM_BIN)/llvm-nm LD=$(KERNEL_LLVM_BIN)/ld.lld NM=$(KERNEL_LLVM_BIN)/llvm-nm OBJCOPY=$(KERNEL_LLVM_BIN)/llvm-objcopy
   else
     ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
        KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_CLANG)
@@ -115,8 +113,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        KERNEL_AOSP_LLVM_BIN := $(shell pwd)/$(shell (dirname $(CLANG)))
        $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN))
     endif
-  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
+  cc := CC=$(KERNEL_LLVM_BIN) REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
   endif
 else
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
@@ -150,7 +147,7 @@ GKI_PLATFORM_NAME := $(shell echo $(GKI_PLATFORM_NAME) | sed "s/vendor\///g")
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/vendor/$(GKI_PLATFORM_NAME)_GKI.config)
 
 # Generate the defconfig file from the fragments
-cmd := $(PATH_OVERRIDE) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=${TARGET_BUILD_VARIANT} $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG)
+cmd := $(PATH_OVERRIDE) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=${TARGET_BUILD_VARIANT} $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG)
 _x := $(shell $(cmd))
 else
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/$(KERNEL_DEFCONFIG))
@@ -207,7 +204,7 @@ ifeq ($(GKI_KERNEL),1)
     BOARD_KERNEL-GKI_BOOTIMAGE_PARTITION_SIZE := 0x06000000
 
     # Generate the GKI defconfig
-    _x := $(shell ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=${TARGET_BUILD_VARIANT} $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(GKI_KERNEL_DEFCONFIG))
+    _x := $(shell ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=${TARGET_BUILD_VARIANT} $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(GKI_KERNEL_DEFCONFIG))
   endif
 endif
 
@@ -286,7 +283,6 @@ define build-kernel
 	HAS_MODULES=$(MODULES) \
 	device/qcom/kernelscripts/buildkernel.sh \
 	$(cc) \
-	$(real_cc) \
 	$(TARGET_KERNEL_MAKE_ENV)
 endef
 
