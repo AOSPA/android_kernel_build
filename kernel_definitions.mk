@@ -95,6 +95,7 @@ ifeq ($(TARGET_PREBUILT_KERNEL),)
 KERNEL_GCC_NOANDROID_CHK := $(shell (echo "int main() {return 0;}" | $(KERNEL_CROSS_COMPILE)gcc -E -mno-android - > /dev/null 2>&1 ; echo $$?))
 
 cc :=
+path :=
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
   ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
     ifeq ($(shell echo $(SDCLANG_PATH) | head -c 1),/)
@@ -103,7 +104,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)
     endif
     $(warning "Using sdllvm" $(KERNEL_LLVM_BIN)/clang)
-  cc := CC=$(KERNEL_LLVM_BIN)/clang REAL_CC=$(KERNEL_LLVM_BIN)/clang CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_LLVM_BIN)/llvm-ar LD=$(KERNEL_LLVM_BIN)/ld.lld NM=$(KERNEL_LLVM_BIN)/llvm-nm OBJCOPY=$(KERNEL_LLVM_BIN)/llvm-objcopy
+    path := $(KERNEL_LLVM_BIN)
   else
     ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
        KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_CLANG)
@@ -113,8 +114,9 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        KERNEL_AOSP_LLVM_BIN := $(shell pwd)/$(shell (dirname $(CLANG)))
        $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN))
     endif
-  cc := CC=$(KERNEL_LLVM_BIN) REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
+    path := $(KERNEL_AOSP_LLVM_BIN)
   endif
+  cc := PATH=$(path):$$PATH CC=clang REAL_CC=clang CLANG_TRIPLE=aarch64-linux-gnu- AR=llvm-ar LD=ld.lld NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
 else
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
 KERNEL_CFLAGS := KCFLAGS=-mno-android
