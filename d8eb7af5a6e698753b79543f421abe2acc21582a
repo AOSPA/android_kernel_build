@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c72361b_fd7c92b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000488
+      },
+      "writtenOn": "2021-06-05T09:24:12Z",
+      "side": 1,
+      "message": "dont think we should really change CAF\u0027s default behaviour",
+      "revId": "d8eb7af5a6e698753b79543f421abe2acc21582a",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
