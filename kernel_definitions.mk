@@ -98,32 +98,30 @@ KERNEL_GCC_NOANDROID_CHK := $(shell (echo "int main() {return 0;}" | $(KERNEL_CR
 
 cc :=
 real_cc :=
+
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
-  ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
-    ifeq ($(shell echo $(SDCLANG_PATH) | head -c 1),/)
-       KERNEL_LLVM_BIN := $(SDCLANG_PATH)/clang
+    ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)
+        KERNEL_LLVM_BIN := $(SOURCE_ROOT)/$(SDCLANG_PATH)
     else
-       KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)/clang
+        KERNEL_LLVM_BIN := $(SOURCE_ROOT)/$(SOONG_LLVM_PREBUILTS_PATH)
     endif
-    $(warning "Using sdllvm" $(KERNEL_LLVM_BIN))
-  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
-  else
-    ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
-       KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_CLANG)
-       $(warning "Using latest kernel aosp llvm" $(KERNEL_LLVM_BIN))
-    else #Using platform aosp-llvm binaries
-       KERNEL_LLVM_BIN := $(shell pwd)/$(CLANG)
-       KERNEL_AOSP_LLVM_BIN := $(shell pwd)/$(shell (dirname $(CLANG)))
-       $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN))
-    endif
-  cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
-  endif
-else
+    $(warning "Using $(KERNEL_LLVM_BIN))
+
+  cc := \
+    AR=$(KERNEL_LLVM_BIN)/llvm-ar \
+    CC=$(KERNEL_LLVM_BIN)/clang \
+    CLANG_TRIPLE=aarch64-linux-gnu- \
+    LD=$(KERNEL_LLVM_BIN)/ld.lld \
+    LLVM_NM=$(KERNEL_LLVM_BIN)/llvm-nm \
+    NM=$(KERNEL_LLVM_BIN)/llvm-nm
+
+  real_cc := \
+    $(cc) \
+    REAL_CC=$(KERNEL_LLVM_BIN)/clang
+endif
+
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
 KERNEL_CFLAGS := KCFLAGS=-mno-android
-endif
 endif
 
 GKI_KERNEL=0
