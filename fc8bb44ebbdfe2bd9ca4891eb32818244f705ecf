@@ -34,6 +34,24 @@
       "parentUuid": "2bb6038c_68766d4d",
       "revId": "fc8bb44ebbdfe2bd9ca4891eb32818244f705ecf",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd4ac9cc_db0a37a0",
+        "filename": "kernel_definitions.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000447
+      },
+      "writtenOn": "2021-06-06T09:55:00Z",
+      "side": 0,
+      "message": "\u003e That\u0027s what was breaking it\n\nAnything else was just making it look nicer",
+      "parentUuid": "6b84fe73_8c122eaf",
+      "revId": "fc8bb44ebbdfe2bd9ca4891eb32818244f705ecf",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
