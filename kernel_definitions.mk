@@ -15,15 +15,11 @@ ifeq ($(TARGET_KERNEL_SOURCE),)
      TARGET_KERNEL_SOURCE := kernel/$(TARGET_KERNEL)
 endif
 
-SOURCE_ROOT := $(shell pwd)
-MAKE_PATH := $(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/
 DEPMOD := $(HOST_OUT_EXECUTABLES)/depmod$(HOST_EXECUTABLE_SUFFIX)
 DTC := $(HOST_OUT_EXECUTABLES)/dtc$(HOST_EXECUTABLE_SUFFIX)
 #UFDT_APPLY_OVERLAY := $(HOST_OUT_EXECUTABLES)/ufdt_apply_overlay$(HOST_EXECUTABLE_SUFFIX)
 
-ifneq (,$(wildcard $(OUT_DIR)/.path_interposer_origpath))
-PATH_OVERRIDE := PATH=$(shell cat $(OUT_DIR)/.path_interposer_origpath):$$PATH
-endif
+SOURCE_ROOT := $(shell pwd)
 
 ifneq ($(strip $(OUT_DIR)), out)
 TARGET_KERNEL_MAKE_ENV := DTC_EXT=$(DTC)
@@ -150,10 +146,6 @@ ifeq ($(GKI_KERNEL),1)
 GKI_PLATFORM_NAME := $(shell echo $(KERNEL_DEFCONFIG) | sed -r "s/(-gki_defconfig|-qgki_defconfig|-qgki-consolidate_defconfig|-qgki-debug_defconfig)$///")
 GKI_PLATFORM_NAME := $(shell echo $(GKI_PLATFORM_NAME) | sed "s/vendor\///g")
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/vendor/$(GKI_PLATFORM_NAME)_GKI.config)
-
-# Generate the defconfig file from the fragments
-cmd := $(PATH_OVERRIDE) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=user $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG)
-_x := $(shell $(cmd))
 else
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/$(KERNEL_DEFCONFIG))
 TARGET_HAS_MODULES := $(shell grep "=m" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/$(KERNEL_DEFCONFIG))
@@ -183,6 +175,7 @@ endif
 KERNEL_HEADERS_INSTALL := $(KERNEL_OUT)/usr
 KERNEL_MODULES_INSTALL ?= system
 KERNEL_MODULES_OUT ?= $(PRODUCT_OUT)/$(KERNEL_MODULES_INSTALL)/lib/modules
+
 TARGET_PREBUILT_KERNEL := $(TARGET_PREBUILT_INT_KERNEL)
 
 endif
@@ -207,9 +200,6 @@ ifeq ($(GKI_KERNEL),1)
 
     BOARD_KERNEL_MODULE_DIRS := $(GKI_TARGET_MODULES_DIR)
     BOARD_KERNEL-GKI_BOOTIMAGE_PARTITION_SIZE := 0x06000000
-
-    # Generate the GKI defconfig
-    _x := $(shell ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=user $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(GKI_KERNEL_DEFCONFIG))
   endif
 endif
 
@@ -257,6 +247,8 @@ ifdef RTIC_MPGEN
 RTIC_DTB := $(KERNEL_SYMLINK)/rtic_mp.dtb
 endif
 
+MAKE_PATH := $(SOURCE_ROOT)/prebuilts/build-tools/linux-x86/bin/
+
 # Helper functions
 
 # Build the kernel
@@ -292,10 +284,27 @@ define build-kernel
 	$(TARGET_KERNEL_MAKE_ENV)
 endef
 
+define build-defconfig
+	ARCH=$(KERNEL_ARCH) \
+	CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) \
+	DEFCONFIG=$(1) \
+	KERNEL_DIR=$(TARGET_KERNEL_SOURCE) \
+	OUT_DIR=$(2) \
+	TARGET_BUILD_VARIANT=user \
+	TARGET_PRODUCT=$(TARGET_BOARD_PLATFORM) \
+	$(TARGET_KERNEL_MAKE_ENV) \
+	$(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh
++endef
+
 # Android Kernel make rules
 # Create kernelusr.time file and use its timestamp later to modify the TS of $(KERNEL_USR). \
 # this will ensure in subsequent builds, i.e. no-op incremental builds, modules depends on $(KERNEL_USR) \
 # will not get recompiled.
+
+# Build the GKI & QGKI configurations.
+$(KERNEL_DEFCONFIG_BUILD): | $(KERNEL_OUT)
+	$(call build-defconfig,$(KERNEL_DEFCONFIG),$(KERNEL_OUT)) \
+	$(call build-defconfig,$(GKI_KERNEL_DEFCONFIG),$(GKI_KERNEL_OUT))
 
 $(KERNEL_HEADERS_INSTALL): $(DTC) $(DEPMOD) | $(KERNEL_OUT)
 	$(call build-kernel,$(KERNEL_DEFCONFIG),$(KERNEL_OUT),$(KERNEL_MODULES_OUT),$(KERNEL_HEADERS_INSTALL),1,$(TARGET_PREBUILT_INT_KERNEL))
@@ -307,7 +316,7 @@ $(KERNEL_OUT):
 $(GKI_KERNEL_OUT):
 	mkdir -p $(GKI_KERNEL_OUT)
 
-$(KERNEL_USR): | $(KERNEL_HEADERS_INSTALL)
+$(KERNEL_USR): | $(KERNEL_DEFCONFIG_BUILD) $(KERNEL_HEADERS_INSTALL)
 	if [ -d "$(KERNEL_SYMLINK)" ] && [ ! -L "$(KERNEL_SYMLINK)" ]; then \
 	rm -rf $(KERNEL_SYMLINK); \
 	ln -s kernel/$(TARGET_KERNEL) $(KERNEL_SYMLINK); \
