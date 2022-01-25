@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c64d72e2_773344f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000541
+      },
+      "writtenOn": "2022-01-25T22:36:13Z",
+      "side": 1,
+      "message": "Cherry-picked from https://gerrit.aospa.co/c/AOSPA/android_kernel_build/+/18647\n\nActually forces the kernel to use all tools from sdclang instead of a frankenbuild",
+      "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
