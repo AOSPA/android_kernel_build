@@ -33,6 +33,24 @@
       "message": "can you test a Jenkins build with this? I think the paths might have been too long",
       "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d477718a_843de2fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000541
+      },
+      "writtenOn": "2022-01-26T03:26:22Z",
+      "side": 1,
+      "message": "\u003e can you test a Jenkins build with this? I think the paths might have been too long\n\nOP7 no (WFD, NFC repos..), OP9P I don\u0027t know if the kernel builds with SDCLANG to begin with, so I don\u0027t think I can? Would need Vishal to test I guess",
+      "parentUuid": "0ae2b3e3_56af3c05",
+      "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
