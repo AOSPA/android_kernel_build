@@ -16,6 +16,23 @@
       "message": "Cherry-picked from https://gerrit.aospa.co/c/AOSPA/android_kernel_build/+/18647\n\nActually forces the kernel to use all tools from sdclang instead of a frankenbuild",
       "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ae2b3e3_56af3c05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2022-01-26T00:00:52Z",
+      "side": 1,
+      "message": "can you test a Jenkins build with this? I think the paths might have been too long",
+      "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
