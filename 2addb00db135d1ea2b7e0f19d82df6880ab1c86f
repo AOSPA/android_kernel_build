@@ -51,6 +51,24 @@
       "parentUuid": "0ae2b3e3_56af3c05",
       "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28f1c569_f7acc743",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000760
+      },
+      "writtenOn": "2022-01-26T20:43:58Z",
+      "side": 1,
+      "message": "i did boot with  this patch and sdllvm\nAsus SDM660 device with msm-4.19 kernel",
+      "parentUuid": "d477718a_843de2fe",
+      "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
