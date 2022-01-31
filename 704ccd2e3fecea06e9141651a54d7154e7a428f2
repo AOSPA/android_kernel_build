@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f218a43_b7eb3a93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-01-31T17:30:53Z",
+      "side": 1,
+      "message": "I do get generate_defconfig not found everytime which is annoying, but I would wait for gki device maintainers to chime in",
+      "revId": "704ccd2e3fecea06e9141651a54d7154e7a428f2",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
