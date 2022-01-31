@@ -113,7 +113,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
     endif
     $(warning "Using sdllvm" $(KERNEL_LLVM_BIN))
   cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu-
+  real_cc := REAL_CC=$(KERNEL_LLVM_BIN)
   else
     ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
        KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_CLANG)
@@ -124,7 +124,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
        $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN))
     endif
   cc := CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
-  real_cc := REAL_CC=$(KERNEL_LLVM_BIN) CLANG_TRIPLE=aarch64-linux-gnu- AR=$(KERNEL_AOSP_LLVM_BIN)/llvm-ar LLVM_NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm LD=$(KERNEL_AOSP_LLVM_BIN)/ld.lld NM=$(KERNEL_AOSP_LLVM_BIN)/llvm-nm
+  real_cc := REAL_CC=$(KERNEL_LLVM_BIN)
   endif
 else
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
