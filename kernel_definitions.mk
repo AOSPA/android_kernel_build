@@ -133,12 +133,6 @@ endif
 endif
 
 GKI_KERNEL=0
-ifneq (,$(findstring gki,$(KERNEL_DEFCONFIG)))
-$(info ###### GKI based platform ######)
-ifneq "gki_defconfig" "$(KERNEL_DEFCONFIG)"
-GKI_KERNEL=1
-endif
-endif
 
 BUILD_ROOT_LOC := ../../..
 KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/kernel/$(TARGET_KERNEL)
