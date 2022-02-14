@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67503d7b_1a817545",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2022-02-14T16:20:53Z",
+      "side": 1,
+      "message": "This script is taking whooping minutes so even the slightest delta build is taking minutes.",
+      "revId": "3763fc318f5f28a04d02050626a1a8d4448a9b69",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
