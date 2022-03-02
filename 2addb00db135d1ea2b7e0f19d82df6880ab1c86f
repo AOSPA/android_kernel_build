@@ -69,6 +69,23 @@
       "parentUuid": "d477718a_843de2fe",
       "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7877195_89d61ff5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000650
+      },
+      "writtenOn": "2022-03-02T13:15:31Z",
+      "side": 1,
+      "message": "Booted with ginkgo (trinket) with this patch ",
+      "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
