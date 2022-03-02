@@ -86,6 +86,23 @@
       "message": "Booted with ginkgo (trinket) with this patch ",
       "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b5101db_e163185c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-03-02T18:48:57Z",
+      "side": 1,
+      "message": "20606: kernel_definitions: Declare PATH for clang build | https://gerrit.aospa.co/c/AOSPA/android_kernel_build/+/20606 this seems like a better approach to me because it uses llvm tools regardless of you use sdclang or not",
+      "revId": "2addb00db135d1ea2b7e0f19d82df6880ab1c86f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
