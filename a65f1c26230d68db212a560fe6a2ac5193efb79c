@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e15b924_ea9b3d1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-03-08T11:15:55Z",
+      "side": 1,
+      "message": "vdso32 builds fine with msm-4.14 and msm-4.19",
+      "revId": "a65f1c26230d68db212a560fe6a2ac5193efb79c",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
