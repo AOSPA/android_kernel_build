@@ -16,6 +16,24 @@
       "message": "vdso32 builds fine with msm-4.14 and msm-4.19",
       "revId": "a65f1c26230d68db212a560fe6a2ac5193efb79c",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e67fd39e_a025e7a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000760
+      },
+      "writtenOn": "2022-03-08T11:53:17Z",
+      "side": 1,
+      "message": "no errors as i mentioned in that patch? cuz i am facing it.. msm-4.19 , sdm660",
+      "parentUuid": "4e15b924_ea9b3d1c",
+      "revId": "a65f1c26230d68db212a560fe6a2ac5193efb79c",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
