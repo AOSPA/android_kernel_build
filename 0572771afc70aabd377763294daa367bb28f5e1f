@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b62173e_18e1dda7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000760
+      },
+      "writtenOn": "2022-03-08T08:38:24Z",
+      "side": 1,
+      "message": "https://gerrit.aospa.co/c/AOSPA/android_build_soong/+/20640\n\nthis patch is needed if the commit is gonna be merged into kernelscripts",
+      "revId": "0572771afc70aabd377763294daa367bb28f5e1f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
