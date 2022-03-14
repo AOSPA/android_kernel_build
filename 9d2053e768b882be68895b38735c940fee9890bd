@@ -16,6 +16,24 @@
       "message": "can we make it overridable ?",
       "revId": "9d2053e768b882be68895b38735c940fee9890bd",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc91acb9_6ef6119e",
+        "filename": "kernel_definitions.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2022-03-14T18:24:22Z",
+      "side": 1,
+      "message": "By \"?:\" ?",
+      "parentUuid": "bc08a249_9f64a94a",
+      "revId": "9d2053e768b882be68895b38735c940fee9890bd",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
