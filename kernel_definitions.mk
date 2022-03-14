@@ -105,22 +105,22 @@ endif
 cc :=
 real_cc :=
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
-  ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
-    ifeq ($(shell echo $(SDCLANG_PATH) | head -c 1),/)
-       KERNEL_LLVM_BIN := $(SDCLANG_PATH)
+    ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
+      ifeq ($(shell echo $(SDCLANG_PATH) | head -c 1),/)
+         KERNEL_LLVM_BIN := $(SDCLANG_PATH)
+      else
+         KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)
+      endif
+      $(warning "Using sdllvm" $(KERNEL_LLVM_BIN)/clang)
     else
-       KERNEL_LLVM_BIN := $(shell pwd)/$(SDCLANG_PATH)
+      ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
+         KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_BIN)
+         $(warning "Using latest kernel aosp llvm" $(KERNEL_LLVM_BIN))
+      else #Using platform aosp-llvm binaries
+         KERNEL_LLVM_BIN := $(shell pwd)/$(shell (dirname $(CLANG)))
+         $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN)/clang)
+      endif
     endif
-    $(warning "Using sdllvm" $(KERNEL_LLVM_BIN)/clang)
-  else
-    ifeq ($(USE_KERNEL_AOSP_LLVM), true)  #Using kernel aosp-llvm compiler
-       KERNEL_LLVM_BIN := $(KERNEL_AOSP_LLVM_BIN)
-       $(warning "Using latest kernel aosp llvm" $(KERNEL_LLVM_BIN))
-    else #Using platform aosp-llvm binaries
-       KERNEL_LLVM_BIN := $(shell pwd)/$(shell (dirname $(CLANG)))
-       $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN)/clang)
-    endif
-  endif
   cc := CC=clang
   real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang CLANG_TRIPLE=aarch64-linux-gnu- AR=llvm-ar LLVM_NM=llvm-nm LD=ld.lld NM=llvm-nm LLVM=1
 else
