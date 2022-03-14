@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc08a249_9f64a94a",
+        "filename": "kernel_definitions.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000468
+      },
+      "writtenOn": "2022-03-14T17:31:06Z",
+      "side": 1,
+      "message": "can we make it overridable ?",
+      "revId": "9d2053e768b882be68895b38735c940fee9890bd",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
