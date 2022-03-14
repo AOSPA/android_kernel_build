@@ -105,6 +105,11 @@ endif
 cc :=
 real_cc :=
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
+  ifeq ($(KERNEL_CUSTOM_LLVM),true)
+    KERNEL_CUSTOM_LLVM_PATH ?= $(SOURCE_ROOT)/prebuilts/clang-standalone
+    KERNEL_LLVM_BIN := $(KERNEL_CUSTOM_LLVM_PATH)/bin
+    $(warning Device is using custom LLVM toolchain for the kernel)
+  else
     ifeq ($(KERNEL_SD_LLVM_SUPPORT), true)  #Using sd-llvm compiler
       ifeq ($(shell echo $(SDCLANG_PATH) | head -c 1),/)
          KERNEL_LLVM_BIN := $(SDCLANG_PATH)
@@ -121,6 +126,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
          $(warning "Not using latest aosp-llvm" $(KERNEL_LLVM_BIN)/clang)
       endif
     endif
+  endif
   cc := CC=clang
   real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang CLANG_TRIPLE=aarch64-linux-gnu- AR=llvm-ar LLVM_NM=llvm-nm LD=ld.lld NM=llvm-nm LLVM=1
 else
