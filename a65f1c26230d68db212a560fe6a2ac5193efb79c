@@ -69,6 +69,24 @@
       "parentUuid": "46f58987_30497691",
       "revId": "a65f1c26230d68db212a560fe6a2ac5193efb79c",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ea34256_a82a609a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000722
+      },
+      "writtenOn": "2022-03-17T12:17:11Z",
+      "side": 1,
+      "message": "No. below 4.19 CROSS_COMPILE_ARM32 is used . And they dont have vdso32 in there except when developer picks the commits from google kernel.\n4.19 vdso32 is in stable branch and in  CAF tag .\nDoes CAF actually build it ?\nIt is default y in arch/arm64/Kconfig here also missing the COMPAT definition:\nhttps://source.codeaurora.org/quic/la/kernel/msm-4.19/tree/arch/arm64/Kconfig?h\u003dLA.UM.9.12.1.r1-00700-SMxx50.QSSI12.0#n1146\n\nMaybe they wanted to but forgot to define the variable in subject",
+      "parentUuid": "4ab2a095_098dce79",
+      "revId": "a65f1c26230d68db212a560fe6a2ac5193efb79c",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
