@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbec5c7c_cfcdaf5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000092
+      },
+      "writtenOn": "2022-03-24T07:51:09Z",
+      "side": 1,
+      "message": "Can\u0027t keep KERNEL_LLVM_SUPPORT?",
+      "revId": "e85f8bd37f85297482f8880bc5309bd9ac3a9270",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
