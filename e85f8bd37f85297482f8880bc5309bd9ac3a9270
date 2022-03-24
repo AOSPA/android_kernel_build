@@ -16,6 +16,24 @@
       "message": "Can\u0027t keep KERNEL_LLVM_SUPPORT?",
       "revId": "e85f8bd37f85297482f8880bc5309bd9ac3a9270",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cae62c1b_917d2711",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000092
+      },
+      "writtenOn": "2022-03-24T08:53:56Z",
+      "side": 1,
+      "message": "Typo. KERNEL_CUSTOM_LLVM",
+      "parentUuid": "fbec5c7c_cfcdaf5b",
+      "revId": "e85f8bd37f85297482f8880bc5309bd9ac3a9270",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
