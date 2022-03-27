@@ -51,6 +51,23 @@
       "message": "Fix it instead of reverting these.\n\nShould be easy to do anyways...",
       "revId": "e85f8bd37f85297482f8880bc5309bd9ac3a9270",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a5d277_06fc6a0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2022-03-27T14:32:43Z",
+      "side": 1,
+      "message": "if you just revert https://github.com/AOSPA/android_kernel_build/commit/e9182ba4a186a4e66484f4accc04195683d93406 does it build and boot",
+      "revId": "e85f8bd37f85297482f8880bc5309bd9ac3a9270",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
