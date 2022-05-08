@@ -16,6 +16,24 @@
       "message": "why do some kernels need this?",
       "revId": "b96b709cb195a0b5662485232fff5597a55b4c0a",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aa14fad_473b4893",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000765
+      },
+      "writtenOn": "2022-05-08T17:57:00Z",
+      "side": 1,
+      "message": "My case is special because of closed vendor\u0027s kernel sources, but I need ufdt_apply_overlay to apply overlay while building and leave DTBO as placeholder",
+      "parentUuid": "479f3a76_620db164",
+      "revId": "b96b709cb195a0b5662485232fff5597a55b4c0a",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
