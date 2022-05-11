@@ -1,3 +1,4 @@
+ifneq ($(DISABLE_QUALCOMM_KERNEL_SCRIPTS),true)
 include device/qcom/kernelscripts/legacy_definitions.mk
 
 # Android Kernel compilation/common definitions
@@ -344,4 +345,5 @@ ifneq (,$(wildcard $(TARGET_KERNEL_SOURCE)/arch/arm64/boot/dts/vendor))
 	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/vendor/$(TARGET_DTS_VENDOR)/*.dtb $(RTIC_DTB) > $@
 else
 	cat $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/$(TARGET_DTS_VENDOR)/*.dtb $(RTIC_DTB) > $@
+endif
 endif
