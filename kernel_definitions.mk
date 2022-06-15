@@ -130,7 +130,7 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
     endif
   endif
   cc := CC=clang
-  real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang CLANG_TRIPLE=aarch64-linux-gnu- AR=llvm-ar LLVM_NM=llvm-nm LD=ld.lld NM=llvm-nm LLVM=1
+  real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang CLANG_TRIPLE=aarch64-linux-gnu- AR=llvm-ar LLVM_NM=llvm-nm LD=ld.lld NM=llvm-nm LLVM=1 LLVM_IAS=1
 else
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
 KERNEL_CFLAGS := KCFLAGS=-mno-android
