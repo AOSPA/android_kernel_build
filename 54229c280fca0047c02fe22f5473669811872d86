@@ -16,6 +16,24 @@
       "message": "weak explanation.  why is this necessary?",
       "revId": "54229c280fca0047c02fe22f5473669811872d86",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfea01d5_130f3b38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000092
+      },
+      "writtenOn": "2022-06-16T03:23:34Z",
+      "side": 1,
+      "message": "\u003e weak explanation.  why is this necessary?\n\nFor now, I think it fixes kernel compilation on clang 14.0.2+",
+      "parentUuid": "0ccc371d_5a8b5fbb",
+      "revId": "54229c280fca0047c02fe22f5473669811872d86",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
