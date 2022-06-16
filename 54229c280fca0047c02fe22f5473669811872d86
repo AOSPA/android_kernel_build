@@ -34,6 +34,23 @@
       "parentUuid": "0ccc371d_5a8b5fbb",
       "revId": "54229c280fca0047c02fe22f5473669811872d86",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca67bc4c_859d15f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000092
+      },
+      "writtenOn": "2022-06-16T03:27:44Z",
+      "side": 1,
+      "message": "Ref: https://github.com/LineageOS/android_kernel_google_raviole/commit/2934fc6a031354a8f73a1b648d75ccf6432bba58",
+      "revId": "54229c280fca0047c02fe22f5473669811872d86",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
