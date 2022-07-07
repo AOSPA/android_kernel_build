@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e610719e_bf5bf71c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2022-07-07T13:47:17Z",
+      "side": 1,
+      "message": "should this have any conditions or will this be fine on 4.14 and lower too?",
+      "revId": "336f1a925eb268ea290f77c01e4ddcb51ea550d3",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
