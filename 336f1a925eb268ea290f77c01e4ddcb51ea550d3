@@ -16,6 +16,24 @@
       "message": "should this have any conditions or will this be fine on 4.14 and lower too?",
       "revId": "336f1a925eb268ea290f77c01e4ddcb51ea550d3",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a10cc75a_ceebada2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-07-08T09:10:56Z",
+      "side": 1,
+      "message": "their kernel makefiles have no check for this variable so shouldn\u0027t cause any issues",
+      "parentUuid": "e610719e_bf5bf71c",
+      "revId": "336f1a925eb268ea290f77c01e4ddcb51ea550d3",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
