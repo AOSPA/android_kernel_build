@@ -348,7 +348,15 @@ $(RTIC_DTB): $(INSTALLED_KERNEL_TARGET)
 	touch $(RTIC_DTB)
 
 # Creating a dtb.img once the kernel is compiled if TARGET_KERNEL_APPEND_DTB is set to be false
+ifdef BOARD_DTB_CFG
+MKDTBOIMG := $(HOST_OUT_EXECUTABLES)/mkdtboimg$(HOST_EXECUTABLE_SUFFIX)
+$(INSTALLED_DTBIMAGE_TARGET): $(MKDTBOIMG)
+endif
 $(INSTALLED_DTBIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET) $(RTIC_DTB)
+ifdef BOARD_DTB_CFG
+	$(MKDTBOIMG) cfg_create $@ $(BOARD_DTB_CFG) -d $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts
+else
 	cat $(shell find $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts -type f -name "*.dtb" | sort) > $@
+endif # BOARD_DTB_CFG
 
 endif
