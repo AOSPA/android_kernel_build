@@ -16,6 +16,23 @@
       "message": "Should be fine.",
       "revId": "fb17281cca04e7a9923af6cce6cd36cf7da74ea8",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a8d8b6c_4dc71d9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-10-02T11:33:38Z",
+      "side": 1,
+      "message": "required and works with oplus msm 4.14",
+      "revId": "fb17281cca04e7a9923af6cce6cd36cf7da74ea8",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
