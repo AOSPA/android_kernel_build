@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff0958c_ddd59d75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000722
+      },
+      "writtenOn": "2022-10-03T16:59:44Z",
+      "side": 1,
+      "message": "what about your previous commentary about not having 32bit apps?\ndid you find any good utility on merging this?",
+      "revId": "d6108eafd39f3bcb297b07eb550f2ccc2ceb46f9",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
