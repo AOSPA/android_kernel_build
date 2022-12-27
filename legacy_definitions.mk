@@ -21,3 +21,5 @@ ifneq ($(TARGET_KERNEL_CONFIG),)
 endif
 
 TARGET_DTS_VENDOR ?= qcom
+
+TARGET_USES_KERNELSCRIPTS := true
