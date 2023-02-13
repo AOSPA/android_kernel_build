@@ -168,9 +168,16 @@ MODULES := false
 endif
 endif
 
+ifeq ($(TARGET_USES_LZ4_KERNEL),true)
+$(info Using lz4 compressed kernel)
+KERNEL_COMPRESSED := lz4
+else
+KERNEL_COMPRESSED := gz
+endif
+
 ifeq ($(TARGET_USES_UNCOMPRESSED_KERNEL),)
 ifeq ($(KERNEL_ARCH),arm64)
-TARGET_PREBUILT_INT_KERNEL := $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/Image.gz
+TARGET_PREBUILT_INT_KERNEL := $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/Image.$(KERNEL_COMPRESSED)
 else
 TARGET_PREBUILT_INT_KERNEL := $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/zImage
 endif
