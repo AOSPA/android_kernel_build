@@ -34,6 +34,24 @@
       "parentUuid": "1e6cdf2f_6751c8d4",
       "revId": "c447dec2b242466845e9bf55e60f94c31416c03d",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "309ed415_ff3f38a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000498
+      },
+      "writtenOn": "2023-04-12T13:48:06Z",
+      "side": 1,
+      "message": "\u003e https://github.com/AOSPA/android_vendor_aospa/blob/topaz/target/board/BoardConfigKernel.mk#L18\n\nAnd we don\u0027t set target tools prefix anywhere also",
+      "parentUuid": "83c7e464_4b50fcda",
+      "revId": "c447dec2b242466845e9bf55e60f94c31416c03d",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
