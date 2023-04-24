@@ -16,6 +16,24 @@
       "message": "We need arm cross-compile for vdso32",
       "revId": "8f6376c0394bc39cc2b12277ad6ddd9ad3bab290",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4b3aa1_a7faa235",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000541
+      },
+      "writtenOn": "2023-04-24T17:22:26Z",
+      "side": 1,
+      "message": "anyway op7 kernel fails with\n\n/bin/sh: line 1: aarch64-linux-gnu-objcopy: command not found\n\n\nmake[4]: *** [/mnt/linux/builddisk/aospa-topaz/kernel/msm-4.14/arch/arm64/kernel/vdso/Makefile:54: arch/arm64/kernel/vdso/vdso.so] Error 127",
+      "parentUuid": "87dc39f1_c541c801",
+      "revId": "8f6376c0394bc39cc2b12277ad6ddd9ad3bab290",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
