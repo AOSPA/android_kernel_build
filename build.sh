@@ -171,7 +171,7 @@ export INITRAMFS_STAGING_DIR=${MODULES_STAGING_DIR}/initramfs_staging
 
 cd ${ROOT_DIR}
 
-export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_COMPAT ARCH SUBARCH
+export CROSS_COMPILE CROSS_COMPILE_COMPAT ARCH SUBARCH
 
 # Restore the previously saved CC argument that might have been overridden by
 # the BUILD_CONFIG.
