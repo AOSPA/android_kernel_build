@@ -34,6 +34,24 @@
       "parentUuid": "87dc39f1_c541c801",
       "revId": "8f6376c0394bc39cc2b12277ad6ddd9ad3bab290",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dbfc1c4_e987fb86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000541
+      },
+      "writtenOn": "2023-04-24T17:27:16Z",
+      "side": 1,
+      "message": "if i disable clang standalone (something arter introduced on S), i get a whole lot of other errors about unknown warning options..\n\nhm.",
+      "parentUuid": "9a4b3aa1_a7faa235",
+      "revId": "8f6376c0394bc39cc2b12277ad6ddd9ad3bab290",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
