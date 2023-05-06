@@ -87,8 +87,13 @@ KERNEL_CONFIG_OVERRIDE := CONFIG_ANDROID_BINDER_IPC_32BIT=y
 endif
 endif
 
+ifeq ($(KERNEL_NEW_GCC_SUPPORT),true)
+KERNEL_CROSS_COMPILE := aarch64-elf-
+KERNEL_CROSS_COMPILE_ARM32 := arm-eabi-
+else
 KERNEL_CROSS_COMPILE := aarch64-linux-gnu-
 KERNEL_CROSS_COMPILE_ARM32 := arm-linux-gnueabi-
+endif
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 
@@ -128,6 +133,13 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
   cc := CC=clang
   real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang AR=llvm-ar LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy LD=ld.lld NM=llvm-nm LLVM=1 LLVM_IAS=1
 else
+  ifeq ($(KERNEL_NEW_GCC_SUPPORT),true)
+    KERNEL_ARM64_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/aarch64/aarch64-elf/bin
+    KERNEL_ARM32_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/arm/arm-eabi/bin
+    $(warning Compiling the kernel with GCC)
+    cc := CC=$(KERNEL_ARM64_GCC_BIN)/aarch64-elf-gcc
+    real_cc := PATH=$(KERNEL_ARM64_GCC_BIN):$(KERNEL_ARM32_GCC_BIN):$$PATH REAL_CC=aarch64-elf-gcc AR=aarch64-elf-ar NM=aarch64-elf-nm OBJCOPY=aarch64-elf-objcopy OBJDUMP=aarch64-elf-objdump LD=aarch64-elf-ld AS=aarch64-elf-as
+  endif
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
 KERNEL_CFLAGS := KCFLAGS=-mno-android
 endif
