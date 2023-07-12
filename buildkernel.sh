@@ -33,7 +33,7 @@ export KERNEL_PREBUILT_DIR=$(readlink -m ${KERNEL_DIR}/../ship_prebuilt)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
 export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
 export UNSTRIPPED_DIR=${KERNEL_MODULES_OUT}/unstripped
-export CROSS_COMPILE CROSS_COMPILE_ARM32 CROSS_COMPILE_COMPAT ARCH SUBARCH
+export ARCH SUBARCH
 
 #Setting up for build
 PREBUILT_KERNEL_IMAGE=$(basename ${TARGET_PREBUILT_INT_KERNEL})
@@ -58,7 +58,7 @@ make_defconfig()
 		echo "Building defconfig"
 		set -x
 		(cd ${KERNEL_DIR} && \
-		${MAKE_PATH}make O=${OUT_DIR} ${MAKE_ARGS} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} ${DEFCONFIG})
+		${MAKE_PATH}make O=${OUT_DIR} ${MAKE_ARGS} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} ${real_cc} ${DEFCONFIG})
 		set +x
 	fi
 }
@@ -70,7 +70,7 @@ headers_install()
 	echo "Installing kernel headers"
 	set -x
 	(cd ${OUT_DIR} && \
-	${MAKE_PATH}make HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} O=${OUT_DIR} ${CC_ARG} ${MAKE_ARGS} headers_install)
+	${MAKE_PATH}make HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} ${real_cc} O=${OUT_DIR} ${CC_ARG} ${MAKE_ARGS} headers_install)
 	set +x
 }
 
@@ -86,7 +86,7 @@ build_kernel()
 		NCORES=8
 	fi
 	(cd ${OUT_DIR} && \
-	${MAKE_PATH}make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" O=${OUT_DIR} ${CC_ARG} ${MAKE_ARGS} -j${NCORES})
+	${MAKE_PATH}make ARCH=${ARCH} ${real_cc} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" O=${OUT_DIR} ${CC_ARG} ${MAKE_ARGS} -j${NCORES})
 	set +x
 }
 
