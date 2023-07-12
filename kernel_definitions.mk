@@ -107,6 +107,7 @@ endif
 
 cc :=
 real_cc :=
+gcc_cc := CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) CROSS_COMPILE_ARM32=$(KERNEL_CROSS_COMPILE_ARM32) CROSS_COMPILE_COMPAT=$(KERNEL_CROSS_COMPILE_ARM32)
 ifeq ($(KERNEL_LLVM_SUPPORT),true)
   ifeq ($(KERNEL_CUSTOM_LLVM),true)
     KERNEL_CUSTOM_LLVM_PATH ?= $(SOURCE_ROOT)/prebuilts/clang-standalone
@@ -131,14 +132,20 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
     endif
   endif
   cc := CC=clang
+  ifeq ($(KERNEL_FULL_LLVM),true)
+  $(warning Compiling the kernel with full LLVM)
   real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang AR=llvm-ar LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy LD=ld.lld NM=llvm-nm LLVM=1 LLVM_IAS=1
+  else
+  $(warning Compiling the kernel with LLVM + GNU cross compile)
+  real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang $(gcc_cc) AR=llvm-ar LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy LD=ld.lld NM=llvm-nm LLVM=1 LLVM_IAS=1
+  endif
 else
   ifeq ($(KERNEL_NEW_GCC_SUPPORT),true)
     KERNEL_ARM64_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/aarch64/aarch64-elf/bin
     KERNEL_ARM32_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/arm/arm-eabi/bin
     $(warning Compiling the kernel with GCC)
     cc := CC=$(KERNEL_ARM64_GCC_BIN)/aarch64-elf-gcc
-    real_cc := PATH=$(KERNEL_ARM64_GCC_BIN):$(KERNEL_ARM32_GCC_BIN):$$PATH REAL_CC=aarch64-elf-gcc AR=aarch64-elf-ar NM=aarch64-elf-nm OBJCOPY=aarch64-elf-objcopy OBJDUMP=aarch64-elf-objdump LD=aarch64-elf-ld AS=aarch64-elf-as
+    real_cc := PATH=$(KERNEL_ARM64_GCC_BIN):$(KERNEL_ARM32_GCC_BIN):$$PATH REAL_CC=aarch64-elf-gcc $(gcc_cc) AR=aarch64-elf-ar NM=aarch64-elf-nm OBJCOPY=aarch64-elf-objcopy OBJDUMP=aarch64-elf-objdump LD=aarch64-elf-ld AS=aarch64-elf-as
   endif
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
 KERNEL_CFLAGS := KCFLAGS=-mno-android
@@ -164,7 +171,7 @@ GKI_PLATFORM_NAME := $(shell echo $(GKI_PLATFORM_NAME) | sed "s/vendor\///g")
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/vendor/$(GKI_PLATFORM_NAME)_GKI.config)
 
 # Generate the defconfig file from the fragments
-cmd := $(PATH_OVERRIDE) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=user $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG)
+cmd := $(PATH_OVERRIDE) ARCH=$(KERNEL_ARCH) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=user $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG)
 _x := $(shell $(cmd))
 else
 TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/$(KERNEL_ARCH)/configs/$(KERNEL_DEFCONFIG))
@@ -221,7 +228,7 @@ ifeq ($(GKI_KERNEL),1)
     BOARD_KERNEL-GKI_BOOTIMAGE_PARTITION_SIZE := 0x06000000
 
     # Generate the GKI defconfig
-    _x := $(shell ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=user $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(GKI_KERNEL_DEFCONFIG))
+    _x := $(shell ARCH=$(KERNEL_ARCH) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=user $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(GKI_KERNEL_DEFCONFIG))
   endif
 endif
 
@@ -284,9 +291,6 @@ define build-kernel
 	OUT_DIR=$(2) \
 	MAKE_PATH=$(MAKE_PATH)\
 	ARCH=$(KERNEL_ARCH) \
-	CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) \
-	CROSS_COMPILE_ARM32=$(KERNEL_CROSS_COMPILE_ARM32) \
-	CROSS_COMPILE_COMPAT=$(KERNEL_CROSS_COMPILE_ARM32) \
 	KERNEL_MODULES_OUT=$(3) \
 	KERNEL_HEADERS_INSTALL=$(4) \
 	HEADERS_INSTALL=$(5) \
