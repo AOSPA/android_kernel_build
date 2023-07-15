@@ -80,6 +80,12 @@ KERNEL_DEFCONFIG := vendor/$(KERNEL_DEFCONFIG)
 endif
 endif
 
+ifeq ($(shell echo $(KERNEL_FRAGMENT_CONFIG) | grep vendor),)
+ifneq (,$(wildcard $(TARGET_KERNEL_SOURCE)/arch/$(TARGET_ARCH)/configs/vendor/$(KERNEL_FRAGMENT_CONFIG)))
+KERNEL_FRAGMENT_CONFIG := vendor/$(KERNEL_FRAGMENT_CONFIG)
+endif
+endif
+
 # Force 32-bit binder IPC for 64bit kernel with 32bit userspace
 ifeq ($(KERNEL_ARCH),arm64)
 ifeq ($(TARGET_ARCH),arm)
@@ -281,6 +287,7 @@ endif
 define build-kernel
 	KERNEL_DIR=$(TARGET_KERNEL_SOURCE) \
 	DEFCONFIG=$(1) \
+	FRAGMENT_CONFIG=$(KERNEL_FRAGMENT_CONFIG) \
 	OUT_DIR=$(2) \
 	MAKE_PATH=$(MAKE_PATH)\
 	ARCH=$(KERNEL_ARCH) \

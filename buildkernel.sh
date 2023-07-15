@@ -61,6 +61,15 @@ make_defconfig()
 		${MAKE_PATH}make O=${OUT_DIR} ${MAKE_ARGS} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} ${DEFCONFIG})
 		set +x
 	fi
+
+	if [ -n "${FRAGMENT_CONFIG}" ]; then
+ 		echo "======================="
+        	echo "Merging fragment configs"
+        	set -x
+		(cd ${KERNEL_DIR} && \
+		${MAKE_PATH}make O=${OUT_DIR} ${MAKE_ARGS} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} ${KERNEL_SCRIPTS}/kconfig/merge_config.sh "${DEFCONFIG}" "${FRAGMENT_CONFIG}")
+		set +x
+	fi
 }
 
 #Install headers
