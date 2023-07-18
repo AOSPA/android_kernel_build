@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4823cfb_db07746f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000541
+      },
+      "writtenOn": "2023-07-18T17:45:49Z",
+      "side": 1,
+      "message": "Seems to work on OP7 after killing the kernel version check (CROSS_COMPILE\u003d)\n\nPerhaps rename \"KERNEL_LLVM_SUPPORT\" to \"KERNEL_FULL_LLVM_SUPPORT\" and drop the kver check?",
+      "revId": "25940423f3ba80ad076150bb96f9d6ded27f578f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
