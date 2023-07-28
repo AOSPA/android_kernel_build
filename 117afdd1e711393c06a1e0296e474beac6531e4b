@@ -16,6 +16,23 @@
       "message": "Worked fine here.",
       "revId": "117afdd1e711393c06a1e0296e474beac6531e4b",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8552ce2f_2617c2d4",
+        "filename": "kernel_definitions.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000890
+      },
+      "writtenOn": "2023-07-28T01:59:23Z",
+      "side": 1,
+      "message": "This check could perhaps be moved to vendor/aospa like it was done at https://github.com/AOSPA/android_vendor_aospa/commit/806a9f148d0bd63041ecc7042d4e4195e726dcdb",
+      "revId": "117afdd1e711393c06a1e0296e474beac6531e4b",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
