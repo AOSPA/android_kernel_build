@@ -51,6 +51,24 @@
       "parentUuid": "8552ce2f_2617c2d4",
       "revId": "117afdd1e711393c06a1e0296e474beac6531e4b",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7bea8dc_eeb02e64",
+        "filename": "kernel_definitions.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000498
+      },
+      "writtenOn": "2023-07-28T13:51:38Z",
+      "side": 1,
+      "message": "*Moved to vendor/aospa, my bad",
+      "parentUuid": "c0274ac4_55429a51",
+      "revId": "117afdd1e711393c06a1e0296e474beac6531e4b",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
