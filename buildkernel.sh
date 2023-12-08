@@ -53,7 +53,7 @@ KERN_SHA1_LOC=${KERNEL_PREBUILT_DIR}/kernel_sha1.txt
 #defconfig
 make_defconfig()
 {
-	if [ -z "${SKIP_DEFCONFIG}" ] ; then
+	if [ -z "${FRAGMENT_CONFIG}" ] ; then
 		echo "======================"
 		echo "Building defconfig"
 		set -x
@@ -64,7 +64,7 @@ make_defconfig()
 
 	if [ -n "${FRAGMENT_CONFIG}" ]; then
  		echo "======================="
-        	echo "Merging fragment configs"
+		echo "Building with fragmented configs"
         	set -x
 		(cd ${KERNEL_DIR} && \
 		${MAKE_PATH}make O=${OUT_DIR} ${MAKE_ARGS} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} ${real_cc} ${KERNEL_SCRIPTS}/kconfig/merge_config.sh "${DEFCONFIG}" "${FRAGMENT_CONFIG}")
