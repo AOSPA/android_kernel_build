@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0a77bd_b2740908",
+        "filename": "buildkernel.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2023-12-10T14:13:10Z",
+      "side": 1,
+      "message": "don\u0027t think we use skip defconfig anyway but I think this commit would be more correct if you just add another condition instead of replacing.",
+      "revId": "33f813762714d91f8f8926c2fc218e2785bc2050",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
