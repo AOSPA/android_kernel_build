@@ -70,6 +70,23 @@
       "parentUuid": "13d1db03_25f96503",
       "revId": "2a2b24cef3bcf7b52881fa412fc75319943089a9",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff2ca3a_5dd86ced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000498
+      },
+      "writtenOn": "2024-01-13T04:55:53Z",
+      "side": 1,
+      "message": "kernelscripts should theoretically work on 5.10, 5.15 and 6.1 for Qualcomm if every modules and dtbs were put back into the kernel main dir if that\u0027s what you were wondering.",
+      "revId": "2a2b24cef3bcf7b52881fa412fc75319943089a9",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
