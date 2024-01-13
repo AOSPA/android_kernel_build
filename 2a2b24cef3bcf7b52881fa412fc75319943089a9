@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53de9f9b_a930c71d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2024-01-13T04:16:23Z",
+      "side": 1,
+      "message": "should this go in legacy definitions?  may not matter as much as we thought since kernelscripts is legacy now anyway and doesn\u0027t really get updated.",
+      "revId": "2a2b24cef3bcf7b52881fa412fc75319943089a9",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
