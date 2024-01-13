@@ -16,6 +16,24 @@
       "message": "should this go in legacy definitions?  may not matter as much as we thought since kernelscripts is legacy now anyway and doesn\u0027t really get updated.",
       "revId": "2a2b24cef3bcf7b52881fa412fc75319943089a9",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2712e1e1_0e6bcc03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000498
+      },
+      "writtenOn": "2024-01-13T04:27:36Z",
+      "side": 1,
+      "message": "Don\u0027t really think that matters anyway, as you said kernelscripts is legacy (tho I intend to use it for Exynos 5.X and MediaTek 5.X+ as it works, kernel_platform ain\u0027t my thing)",
+      "parentUuid": "53de9f9b_a930c71d",
+      "revId": "2a2b24cef3bcf7b52881fa412fc75319943089a9",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
