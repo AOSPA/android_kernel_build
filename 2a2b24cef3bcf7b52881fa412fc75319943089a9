@@ -52,6 +52,24 @@
       "parentUuid": "2712e1e1_0e6bcc03",
       "revId": "2a2b24cef3bcf7b52881fa412fc75319943089a9",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa3e02f2_01049e89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000498
+      },
+      "writtenOn": "2024-01-13T04:54:20Z",
+      "side": 1,
+      "message": "for Exynos, 5.4 and 5.10 compile fine (their is no 5.10+ for that platform) and for MediaTeK 5.10 and 5.15 compile fine too (MediaTeK never made a 5.4 release for their mobile SoC)",
+      "parentUuid": "13d1db03_25f96503",
+      "revId": "2a2b24cef3bcf7b52881fa412fc75319943089a9",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
