@@ -184,6 +184,10 @@ MODULES := false
 endif
 endif
 
+ifeq ($(BOARD_KERNEL_IMAGE_NAME),Image)
+TARGET_USES_UNCOMPRESSED_KERNEL := true
+endif
+
 ifeq ($(TARGET_USES_UNCOMPRESSED_KERNEL),)
 ifeq ($(KERNEL_ARCH),arm64)
 TARGET_PREBUILT_INT_KERNEL := $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/Image.gz
