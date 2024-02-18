@@ -89,8 +89,8 @@ endif
 endif
 
 ifeq ($(KERNEL_NEW_GCC_SUPPORT),true)
-KERNEL_CROSS_COMPILE := aarch64-elf-
-KERNEL_CROSS_COMPILE_ARM32 := arm-eabi-
+KERNEL_CROSS_COMPILE := $(KERNEL_NEW_GCC_TOOLCHAIN_ARM64)-
+KERNEL_CROSS_COMPILE_ARM32 := $(KERNEL_NEW_GCC_TOOLCHAIN_ARM32)-
 else
 KERNEL_CROSS_COMPILE := aarch64-linux-gnu-
 KERNEL_CROSS_COMPILE_ARM32 := arm-linux-gnueabi-
@@ -142,10 +142,10 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
   endif
 else
   ifeq ($(KERNEL_NEW_GCC_SUPPORT),true)
-    KERNEL_ARM64_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/aarch64/aarch64-elf/bin
-    KERNEL_ARM32_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/arm/arm-eabi/bin
+    KERNEL_ARM64_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/aarch64/$(KERNEL_NEW_GCC_TOOLCHAIN_ARM64)/bin
+    KERNEL_ARM32_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/arm/$(KERNEL_NEW_GCC_TOOLCHAIN_ARM32)/bin
     $(warning Compiling the kernel with GCC)
-    cc := CC=$(KERNEL_ARM64_GCC_BIN)/aarch64-elf-gcc
+    cc := CC=$(KERNEL_ARM64_GCC_BIN)/$(KERNEL_CROSS_COMPILE)gcc
     real_cc := PATH=$(KERNEL_ARM64_GCC_BIN):$(KERNEL_ARM32_GCC_BIN):$$PATH $(gcc_cc)
   endif
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
