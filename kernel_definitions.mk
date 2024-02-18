@@ -135,10 +135,10 @@ ifeq ($(KERNEL_LLVM_SUPPORT),true)
   cc := CC=clang
   ifeq ($(KERNEL_FULL_LLVM),true)
   $(warning Compiling the kernel with full LLVM)
-  real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang AR=llvm-ar LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy LD=ld.lld NM=llvm-nm LLVM=1 LLVM_IAS=1
+  real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang LLVM=1 LLVM_IAS=1
   else
   $(warning Compiling the kernel with LLVM + GNU cross compile)
-  real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang $(gcc_cc) AR=llvm-ar LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy LD=ld.lld NM=llvm-nm LLVM=1 LLVM_IAS=1
+  real_cc := PATH=$(KERNEL_LLVM_BIN):$$PATH REAL_CC=clang $(gcc_cc) LLVM=1 LLVM_IAS=1
   endif
 else
   ifeq ($(KERNEL_NEW_GCC_SUPPORT),true)
@@ -146,7 +146,7 @@ else
     KERNEL_ARM32_GCC_BIN := $(SOURCE_ROOT)/prebuilts/gcc/$(BUILD_OS)-x86/arm/arm-eabi/bin
     $(warning Compiling the kernel with GCC)
     cc := CC=$(KERNEL_ARM64_GCC_BIN)/aarch64-elf-gcc
-    real_cc := PATH=$(KERNEL_ARM64_GCC_BIN):$(KERNEL_ARM32_GCC_BIN):$$PATH REAL_CC=aarch64-elf-gcc $(gcc_cc) AR=aarch64-elf-ar NM=aarch64-elf-nm OBJCOPY=aarch64-elf-objcopy OBJDUMP=aarch64-elf-objdump LD=aarch64-elf-ld AS=aarch64-elf-as
+    real_cc := PATH=$(KERNEL_ARM64_GCC_BIN):$(KERNEL_ARM32_GCC_BIN):$$PATH $(gcc_cc)
   endif
 ifeq ($(strip $(KERNEL_GCC_NOANDROID_CHK)),0)
 KERNEL_CFLAGS := KCFLAGS=-mno-android
