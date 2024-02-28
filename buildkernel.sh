@@ -62,6 +62,16 @@ make_defconfig()
 		set +x
 	fi
 
+	if [ -z "${REGENERATE_DEFCONFIG}" ] ; then
+		echo "======================"
+		echo "Regenerating defconfig"
+		set -x
+		(cd ${KERNEL_DIR} && \
+		${MAKE_PATH}make O=${OUT_DIR} ${MAKE_ARGS} HOSTCFLAGS="${TARGET_INCLUDES}" HOSTLDFLAGS="${TARGET_LINCLUDES}" ARCH=${ARCH} ${real_cc} ${DEFCONFIG} savedefconfig && \
+		cp ${OUT_DIR}/defconfig arch/${ARCH}/configs/${DEFCONFIG})
+		set +x
+	fi
+
 	if [ -n "${FRAGMENT_CONFIG}" ]; then
  		echo "======================="
         	echo "Merging fragment configs"
