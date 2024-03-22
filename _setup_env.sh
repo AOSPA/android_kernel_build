@@ -20,6 +20,9 @@
 
 [ -n "$_SETUP_ENV_SH_INCLUDED" ] && return || _SETUP_ENV_SH_INCLUDED=1
 
+export KBUILD_BUILD_USER=nobody
+export KBUILD_BUILD_HOST=android-build
+
 # TODO: Use a $(gettop) style method.
 export ROOT_DIR=$PWD
 
