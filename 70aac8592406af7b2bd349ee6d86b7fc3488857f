@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d26cf058_fb59a129",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000092
+      },
+      "writtenOn": "2024-03-23T06:33:04Z",
+      "side": 1,
+      "message": "Tested on topaz\npipa:/ $ cat /proc/version                                                                                                                       \nLinux version 4.19.306-paranoid-g6381d1e663b5 (nobody@android-build) (Android (8490178, based on r450784d) clang version 14.0.6 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6), LLD 14.0.6) #1 SMP PREEMPT Sat Mar 23 10:53:27 CST 2024\n\nSimilar to https://gerrit.aospa.co/c/AOSPA/android_vendor_aospa/+/39185",
+      "revId": "70aac8592406af7b2bd349ee6d86b7fc3488857f",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
