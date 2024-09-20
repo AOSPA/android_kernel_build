@@ -16,6 +16,24 @@
       "message": "Pass this ${KERNEL_UAPI_HEADERS_DIR} instead of OUT_DIR and try",
       "revId": "e030ecd0e1c6244e571223eeebf0acaa4b4bf0ae",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c4b87c5_db29d974",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1000760
+      },
+      "writtenOn": "2024-09-20T09:28:44Z",
+      "side": 1,
+      "message": "works",
+      "parentUuid": "b303c76d_97b31a6c",
+      "revId": "e030ecd0e1c6244e571223eeebf0acaa4b4bf0ae",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
