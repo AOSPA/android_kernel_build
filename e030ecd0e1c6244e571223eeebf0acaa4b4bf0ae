@@ -34,6 +34,24 @@
       "parentUuid": "b303c76d_97b31a6c",
       "revId": "e030ecd0e1c6244e571223eeebf0acaa4b4bf0ae",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce0158ca_c7232a2a",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1000895
+      },
+      "writtenOn": "2024-09-20T09:39:43Z",
+      "side": 1,
+      "message": "well it failed for me",
+      "parentUuid": "6c4b87c5_db29d974",
+      "revId": "e030ecd0e1c6244e571223eeebf0acaa4b4bf0ae",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
