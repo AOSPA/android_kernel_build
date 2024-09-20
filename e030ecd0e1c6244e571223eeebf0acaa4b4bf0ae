@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b303c76d_97b31a6c",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1000468
+      },
+      "writtenOn": "2024-09-20T09:05:46Z",
+      "side": 1,
+      "message": "Pass this ${KERNEL_UAPI_HEADERS_DIR} instead of OUT_DIR and try",
+      "revId": "e030ecd0e1c6244e571223eeebf0acaa4b4bf0ae",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
