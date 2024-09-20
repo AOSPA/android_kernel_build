@@ -33,6 +33,24 @@
       "message": "well it fails here, same error as earier",
       "revId": "3fb46296f07fa98cd1f29b5125edb0ce1b0b205e",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d672ad_35dbe7ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000760
+      },
+      "writtenOn": "2024-09-20T13:27:16Z",
+      "side": 1,
+      "message": "cuz you have to remove that header manually from out dir. and then start build. installclean doesn\u0027t clean the header. but once u remove, next time it ain\u0027t needed",
+      "parentUuid": "a2d26494_9934ca2b",
+      "revId": "3fb46296f07fa98cd1f29b5125edb0ce1b0b205e",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
