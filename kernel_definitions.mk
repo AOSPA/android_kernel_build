@@ -153,7 +153,7 @@ KERNEL_CFLAGS := KCFLAGS=-mno-android
 endif
 endif
 
-GKI_KERNEL=0
+GKI_KERNEL ?= 0
 
 BUILD_ROOT_LOC := ../../..
 KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/kernel/$(TARGET_KERNEL)
@@ -169,7 +169,7 @@ else
 ifeq ($(GKI_KERNEL),1)
 GKI_PLATFORM_NAME := $(shell echo $(KERNEL_DEFCONFIG) | sed -r "s/(-gki_defconfig|-qgki_defconfig|-qgki-consolidate_defconfig|-qgki-debug_defconfig)$///")
 GKI_PLATFORM_NAME := $(shell echo $(GKI_PLATFORM_NAME) | sed "s/vendor\///g")
-TARGET_USES_UNCOMPRESSED_KERNEL := $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/vendor/$(GKI_PLATFORM_NAME)_GKI.config)
+TARGET_USES_UNCOMPRESSED_KERNEL ?= $(shell grep "CONFIG_BUILD_ARM64_UNCOMPRESSED_KERNEL=y" $(TARGET_KERNEL_SOURCE)/arch/arm64/configs/vendor/$(GKI_PLATFORM_NAME)_GKI.config)
 
 # Generate the defconfig file from the fragments
 cmd := $(PATH_OVERRIDE) ARCH=$(KERNEL_ARCH) $(real_cc) KERN_OUT=$(KERNEL_OUT) $(TARGET_KERNEL_MAKE_ENV) MAKE_PATH=$(MAKE_PATH) TARGET_BUILD_VARIANT=user $(TARGET_KERNEL_SOURCE)/scripts/gki/generate_defconfig.sh $(KERNEL_DEFCONFIG)
@@ -248,7 +248,7 @@ BOARD_VENDOR_KERNEL_MODULES_$(GKI_TARGET_MODULES_DIR) = \
               $(foreach mod, $(BOARD_VENDOR_KERNEL_MODULES), \
                 $(subst $(KERNEL_MODULES_OUT), $(GKI_KERNEL_MODULES_OUT), $(mod)))
 
-$(warning VENDOR_RAMDISK_KERNEL_MODLUES = $(VENDOR_RAMDISK_KERNEL_MODLUES))
+$(warning VENDOR_RAMDISK_KERNEL_MODULES = $(VENDOR_RAMDISK_KERNEL_MODULES))
 
 ifneq ($(VENDOR_RAMDISK_KERNEL_MODULES),)
 VENDOR_RAMDISK_KERNEL_MODULES_ARCHIVE := vendor_ramdisk_modules.zip
