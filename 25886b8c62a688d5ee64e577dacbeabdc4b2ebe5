@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9debefc_287055bb",
+        "filename": "kernel_definitions.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1001139
+      },
+      "writtenOn": "2025-10-26T20:26:47Z",
+      "side": 1,
+      "message": "Is a non-issue but was \u0027fixed\u0027 with https://git.codelinaro.org/clo/le/kernel/build/-/commit/a6803dbe16f18175f85947eaf91b197fa79697de#cbb50f40e7d3270ec2ca1b91f1dce4ce2a95b629_206_205",
+      "range": {
+        "startLine": 251,
+        "startChar": 10,
+        "endLine": 251,
+        "endChar": 39
+      },
+      "revId": "25886b8c62a688d5ee64e577dacbeabdc4b2ebe5",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
