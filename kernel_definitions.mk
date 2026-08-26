@@ -51,16 +51,14 @@ TARGET_KERNEL_MAKE_ENV += LEX=$(SOURCE_ROOT)/prebuilts/build-tools/$(HOST_OS)-$(
 TARGET_KERNEL_MAKE_ENV += M4=$(SOURCE_ROOT)/prebuilts/build-tools/$(HOST_OS)-$(HOST_2ND_ARCH)/bin/m4
 TARGET_KERNEL_MAKE_ENV += YACC=$(SOURCE_ROOT)/prebuilts/build-tools/$(HOST_OS)-$(HOST_2ND_ARCH)/bin/bison
 
-BUILD_CONFIG := $(TARGET_KERNEL_SOURCE)/build.config.common
 ifneq ($(KERNEL_CLANG_VERSION),)
 CLANG_VERSION := clang-$(KERNEL_CLANG_VERSION)
 else
-CLANG_VERSION := $(shell IFS="/"; while read LINE; do if [[ $$LINE == *"CLANG_PREBUILT_BIN"* ]]; then read -ra CLANG <<< "$$LINE"; for VERSION in "$${CLANG[@]}"; do if [[ $$VERSION == *"clang-"* ]]; then echo "$$VERSION"; fi; done; fi; done < $(BUILD_CONFIG))
+CLANG_VERSION := $(shell $(SOURCE_ROOT)/build/soong/scripts/get_clang_version.py)
 endif
-KERNEL_LLVM_BIN := $(lastword $(sort $(wildcard $(SOURCE_ROOT)/$(LLVM_PREBUILTS_BASE)/$(BUILD_OS)-x86/clang-4*)))/bin/clang
 KERNEL_AOSP_LLVM_BIN := $(SOURCE_ROOT)/$(LLVM_PREBUILTS_BASE)/$(BUILD_OS)-x86/$(CLANG_VERSION)/bin
 KERNEL_AOSP_LLVM_CLANG := $(KERNEL_AOSP_LLVM_BIN)/clang
-USE_KERNEL_AOSP_LLVM := $(shell test -f "$(KERNEL_AOSP_LLVM_CLANG)" && echo "true" || echo "false")
+USE_KERNEL_AOSP_LLVM := $(if $(wildcard $(KERNEL_AOSP_LLVM_CLANG)),true,false)
 
 KERNEL_TARGET := $(strip $(INSTALLED_KERNEL_TARGET))
 ifeq ($(KERNEL_TARGET),)
